@@ -1,0 +1,158 @@
+*{
+    font-family:arial;
+    background-color: #f1f1f1;
+    line-height: 1.4em;
+}
+
+.search-title{
+    font-weight:bold;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    display:block;
+}
+
+.search-wrapper{
+    flex-grow:1;
+    margin-right: 3.5rem;
+}
+
+.flex-container,
+.content-container,
+.posts-number-container{
+    padding: 1rem 2rem 0rem .5rem;
+}
+
+.flex-container{
+    display:flex;
+    justify-content: space-between;
+    gap: .25rem;
+    align-items: top;
+    flex-wrap:wrap;
+}
+
+.search-input{
+    font-size: 1rem;
+    padding: .5em 1em;
+    border: 2px solid lightgrey;
+    width:100%;
+}
+
+.posts-number-container{
+    margin: 1rem 0rem 4rem 0rem;
+}
+
+.posts-number,
+.posts{
+    font-weight:bold;
+}
+
+.bitsofcode-container{
+    border:2px solid lightgrey;
+    width:20%;
+    text-align:left;
+    padding: .75rem .5rem;
+    min-width:270px;
+}
+
+.bitsofcode{
+    font-weight:bold;
+}
+
+.ireaderinokun{
+    text-decoration: underline;
+}
+
+.follow-container{
+    margin-top: .5rem;
+}
+
+.twitter-btn-followers-wrapper{
+    display:flex;
+    align-items:center;
+}
+
+.twitter-follow-btn,
+.at-icon{
+    display:flex;
+    align-items:center;
+    background-color:#1DA1F2;
+    color:white;
+    border:none;
+    border-radius:3px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size: .75rem;
+}
+
+.at-icon{
+    font-size: .7em;
+    margin-left: 3px;
+}
+
+.twitter-icon{
+    background-color:#1DA1F2;
+    color:white;
+    height: .9rem;
+    margin-right:3px;
+}
+
+.followers{
+    border:1px solid black;
+    font-size: .75em;
+    padding: .1em .3em;
+    background-color:white;
+    border-radius:3px;
+    position:relative;
+    box-sizing:border-box;
+    margin-left:5px;
+}
+
+.followers:after{
+    position:absolute;
+    content: ' ';
+    width: 5px;
+    height:5px;
+    border-top: 0px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 0px solid black;
+    left: -3.65px;
+    top: calc(100% - 13px);
+    transform: rotate(136deg);
+    background-color:white;
+    
+}
+
+.content-container{
+    max-width:55%;
+    min-width:480px;
+}
+
+.section{
+    border-bottom:2px solid lightgrey;
+    padding: 0 1.5rem 1.5rem 0;
+    margin-bottom: 1.5rem;
+}
+
+.section > .title{
+    margin-bottom: .5rem;
+    font-weight:bold;
+    font-size: 2rem;
+}
+
+.section > .date{
+    margin-bottom: .75rem;
+    font-style: italic;
+}
+
+.content-container :last-child{
+    border:none;
+}
+
+mark{
+    background-color: yellow;
+}
+
+.hide{
+    display:none;
+}
