@@ -46,6 +46,10 @@
     font-weight:bold;
 }
 
+.found{
+    font-weight:normal;
+}
+
 .bitsofcode-container{
     border:2px solid lightgrey;
     width:20%;
@@ -151,8 +155,4 @@
 
 mark{
     background-color: yellow;
-}
-
-.hide{
-    display:none;
 }
