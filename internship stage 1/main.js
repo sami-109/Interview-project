@@ -1,44 +1,56 @@
-let sectionsHTML = '';
-const searchInput = document.querySelector('.js-search-input');
+// Select the search input, the container for article sections, and the element to display result count
+const input = document.querySelector('.js-search-input');
+const contentSection = document.querySelector('.js-content-sections');
+const result = document.querySelector('.posts-number');
 
-//loops over the articles array and puts the content in the structure below
-articles.forEach((section) => {
-    sectionsHTML += `
-        <div class="section">
-            <div class="title">${section.title}</div>
-            <div class="date">${section.date}</div>
-            <div class="body">${section.body}</div>
-        </div>
-        `;
-})
-
-//display result 
-document.querySelector('.js-content-sections')
-.innerHTML = sectionsHTML;
-
-//I created this function to count the number of occurences of the searched value and return the result.
-const countOccurrences = function(array, value){
-    return array.reduce((count, element) => {
-        return (value === element ? count += 1 : count)
-    },0);
+/**
+ * Highlights all occurrences of the search key inside the given text.
+ * It wraps matched terms in <mark> tags for visual highlighting.
+ * @param {string} text - The original text (e.g., article title, date, or body)
+ * @param {string} key - The search keyword entered by the user
+ * @returns {string} - The text with matched terms wrapped in <mark>
+ */
+function highlight(text, key){
+    const regex = new RegExp(`(${key})`, 'gi'); // Create a case-insensitive global regex from the search key
+    return text.replace(regex, '<mark>$1</mark>'); // Wrap matches in <mark>
 }
 
-//This wouldn't work, I tried multiple different ideas, but I just can't figure out the proper syntax to write it.
-//My final plan was to bascially search using letters, which loops over the array displaying the results.
-//As in if the condition is true and the value is found in the array articles, display that value, and add the class mark to each value,
-//which highlights them. And if false, do not display the post, could also toggle hide class so posts won't appear, 
-// and whether or not the value is found, execute the function to display total amount of occurrences.
-searchInput.addEventListener("keyup", (e) => {
-    const value = e.target.value.toLowerCase();
-    let posts = document.querySelector('.js-content-sections');
-    posts.forEach(post => {
-        if(post.textContent.toLowerCase().includes(value)){
-            post.style.display = 'block';
-            value.classList.toggle('mark');
-        } else{
-            post.style.display = 'none';
-        }
-        return document.querySelector('.posts-number').innerHTML = countOccurrences(articles, value);
-        })
-    })
-    
+// Listen for input events on the search field
+input.addEventListener('input', (e) => {
+    const searchKey = e.target.value.toLowerCase(); // Get the search input and convert to lowercase
+    console.log(searchKey); // Log search key for debugging
+
+    // Filter articles where title, date, or body includes the search key
+    const filteredArticles = articles.filter(article => {
+        return article.title.toLowerCase().includes(searchKey) ||
+               article.date.toLowerCase().includes(searchKey) ||
+               article.body.toLowerCase().includes(searchKey);
+    });
+
+    let sectionHTML = ''; // Will store the HTML to be injected
+
+    // Loop over filtered articles and build HTML with highlighted matches
+    filteredArticles.forEach(article => {
+        const highlightedTitle = highlight(article.title, searchKey);
+        const highlightedDate = highlight(article.date, searchKey);
+        const highlightedBody = highlight(article.body, searchKey);
+
+        // Append each article block with highlighted content
+        sectionHTML += `
+            <div class="section">
+                <div class="title">${highlightedTitle}</div>
+                <div class="date">${highlightedDate}</div>
+                <div class="body">${highlightedBody}</div>
+            </div>
+        `;
+    });
+
+    // Inject the filtered and highlighted content into the page
+    contentSection.innerHTML = sectionHTML;
+
+    // Update the number of posts found
+    result.innerHTML = `${filteredArticles.length} posts<span class="found"> were found</span>`;
+
+    console.log(filteredArticles); // Optional debug log
+});
+
