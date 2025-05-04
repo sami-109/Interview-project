@@ -7,8 +7,4 @@ No need for a backend to be integrated. Store an array of articles in a constant
 
 
 
-/*It wouldn't work, I tried multiple different ideas, but I just can't figure out the proper javascript syntax to actually be able to filter out the results and search for values.
 
-My final plan was to bascially search using letters, which loops over the array displaying the results.(filtering)
-
-If the condition appears to be true and the value is found in the array articles, display that value, and toggle the class mark to each result, which highlights them. And if false, do not display the post, (could also toggle hide class so posts won't appear), and whether or not the value is found, execute the function to display total amount of occurrences.*/
